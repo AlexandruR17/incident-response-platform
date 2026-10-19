@@ -1,7 +1,7 @@
 # Cyber Incident Analysis and Response Platform
 
 A self-hosted SOC platform that unifies defensive detection, controlled offensive testing,
-and a local AI analyst over a single telemetry pipeline — with a hardware-anchored,
+and a local AI analyst over a single telemetry pipeline, with a hardware-anchored,
 tamper-evident audit trail.
 
 Built as a Master's dissertation project. Detection maps every finding to OWASP, MITRE
@@ -30,7 +30,7 @@ A small security team watching OT/IoT and web assets at once faces three gaps at
 time: alerts arrive without framework context, response is manual and slow, and the audit
 trail of "who decided what, when" lives in logs that an attacker with host access can edit.
 
-This platform addresses all three in one pipeline — detection with built-in framework
+This platform addresses all three in one pipeline: detection with built-in framework
 mapping, configurable automatic response with a human-review workflow, and an audit log
 anchored in hardware so its integrity does not depend on the host it protects.
 
@@ -55,9 +55,9 @@ flowchart TB
     end
 
     subgraph Heads["The three heads"]
-        BLUE["Blue — defensive / SIEM"]
-        RED["Red — scoped offensive testing"]
-        BRAIN["Brain — local AI analyst<br/>(CAI on Ollama)"]
+        BLUE["Blue · defensive / SIEM"]
+        RED["Red · scoped offensive testing"]
+        BRAIN["Brain · local AI analyst<br/>(CAI on Ollama)"]
     end
 
     subgraph Audit["Hardware-anchored audit"]
@@ -79,7 +79,7 @@ flowchart TB
 
 - **Blue** turns telemetry into incidents and drives containment.
 - **Red** runs vulnerability scanning and controlled testing, confined to a scope allowlist
-  enforced in code and gated behind explicit human approval — lab use only.
+  enforced in code and gated behind explicit human approval (lab use only).
 - **Brain** is a local AI security agent (CAI, served by Ollama) that assists triage without
   sending any data to a third party.
 - **Audit** writes every response decision to a hash-chained log on a Raspberry Pi, with an
@@ -113,7 +113,7 @@ sequenceDiagram
 ## Detection coverage
 
 The threat catalog is intentionally complete across system profiles, so the coverage view
-shows the whole landscape — detected threats and current gaps alike, rather than hiding what
+shows the whole landscape of detected threats and current gaps alike, rather than hiding what
 is not yet covered.
 
 | Profile | Example threats | Frameworks |
@@ -131,12 +131,12 @@ the analyst reviews a decision rather than a raw alert.
 
 ## Automatic response and investigation
 
-Each rule carries a configurable response — `none`, `ignore`, `mark_degraded`,
+Each rule carries a configurable response: `none`, `ignore`, `mark_degraded`,
 `block_source`, or `robot_estop`. When an incident opens, the platform takes that action
 automatically and records it. An analyst then **starts investigating**, can **change the
 response**, and **resolves** or marks the incident a **false positive** (which lifts any
 block). A blocked source is redirected to a step-by-step forensic page that replays the
-request and shows the attacker's fingerprint — not a generic error.
+request and shows the attacker's fingerprint, not a generic error.
 
 ## Screenshots
 
@@ -167,7 +167,7 @@ request and shows the attacker's fingerprint — not a generic error.
 | Data | PostgreSQL 16 with TimescaleDB and pgvector |
 | Messaging | RabbitMQ (events), Redis + Celery (tasks), MQTT (OT/IoT telemetry) |
 | Frontend | React 18, TypeScript, Vite, TailwindCSS, TanStack Query |
-| Endpoint agent | Python, httpx, psutil — Linux, Windows-sim and web-log profiles |
+| Endpoint agent | Python, httpx, psutil (Linux, Windows-sim and web-log profiles) |
 | AI | CAI security agent served locally via Ollama |
 | Hardware | Raspberry Pi (hash-chained audit box), ESP32 (tamper sensor) |
 | Delivery | Docker Compose, nginx reverse proxy, isolated lab network |
